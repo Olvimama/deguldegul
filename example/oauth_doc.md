@@ -1,6 +1,6 @@
 # {플랫폼명} HTTP REST API 설계서
 
-> 배포버전: v1_20210218
+> 배포버전: v1_20210219
 
 - 본 문서는 (주){회사명}의 기밀 자산으로 {플랫폼명} API(이하 "플랫폼 API") 연동과 관련된 표준 가이드 및 연동에 필요한 정보를 제공하기 위하여 작성되었습니다.
 - (주){회사명}의 승인 없이 이를 변형하거나 제3자에게 제공 혹은 배포 할 수 없습니다. 또한 (주){회사명}의 사전 승인 없이 "플랫폼 API"를 재가공하거나 재판매하는 등의 활동은 할 수 없습니다.
@@ -145,7 +145,7 @@ Copyright © 2021 {회사명} Corp. Confidential and Proprietary. All Rights Res
 ![](./img/seq_service_via_bizgw.png)
 
 *1. API Request / 2. 토큰 인증*
-  - Authorization은 Bearer 혹은 PARTNER_KEY 방식을 사용합니다. 이는 각 API 명세에 따릅니다.
+  - Authorization은 Bearer 방식을 사용합니다.
   - 요청을 받은 {플랫폼명} 서버에서는 Authorization을 수행합니다.
     - 인증 실패 시 인증 실패 응답을 제휴사에 보냅니다.
     - 인증 성공 시 API에 해당하는 서비스로 요청을 전달합니다.
@@ -212,16 +212,16 @@ OAuth 인증 프로세스가 완료되면 사용자 토큰이 발급됩니다.
 #### 2.5.3. Content-Type
 
 - API에 따라 다르므로 반드시 API 명세를 따라주시기 바랍니다.
-- Content-Type이 `application/x-www-form-urlencoded`인 경우 파라미터 value에 대해 반드시 **URL encoding**이 필요합니다.
+- Content-Type이 `application/x-www-form-urlencoded`인 경우 파라미터 value에 대해 **URL encoding**이 필요합니다.
   - (참고) https://www.w3.org/TR/html401/interact/forms.html#h-17.13.4
   - `Appendix B. URL encoding 가이드` 항목에서 URL encoding 방법을 확인할 수 있습니다.
 
 ### 2.6. API 응답 방식
 
-- 기본 응답 방식
+- 방식
   - 결과는 HTTP Status Code와 HTTP Body를 통해 나타납니다.
   - HTTP Body의 형식은 JSON 포맷입니다.
-- 기본 응답 형식
+- 형식
   - 성공
 
     ```http
@@ -243,12 +243,12 @@ OAuth 인증 프로세스가 완료되면 사용자 토큰이 발급됩니다.
 
 ### 2.7. API 목록
 
-| No | Functionality | URI | Method |
+| 절 | Functionality | URI | Method |
 |---|---|---|---|
-| 1 | 인증 코드 요청 | /oauth/authorize | GET |
-| 2 | 사용자 토큰 발급 | /oauth/token | POST |
-| 3 | 사용자 토큰 갱신 | /oauth/token | POST |
-| 4 | 사용자 정보 조회 | /users/v2/me | GET |
+| 3.1 | 인증 코드 요청 | /oauth/authorize | GET |
+| 3.2 | 사용자 토큰 발급 | /oauth/token | POST |
+| 3.3 | 사용자 토큰 갱신 | /oauth/token | POST |
+| 3.4 | 사용자 정보 조회 | /users/v2/me | GET |
 
 ### 2.8. 공통 에러 코드
 
